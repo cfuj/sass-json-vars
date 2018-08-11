@@ -39,7 +39,7 @@ module SassJSONVars
 
     def _convert_to_sass(item)
         if item.is_a? String
-            if item.scan(/[[:punct:]]/i).length > 0
+            if item.scan(/^$|[[:punct:]]/i).length > 0
                 item = "\'" + item + "\'"
             end
         end
