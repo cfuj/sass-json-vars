@@ -38,13 +38,18 @@ module SassJSONVars
     end
 
     def _convert_to_sass(item)
-      if item.is_a? Array
-        _make_list(item)
-      elsif item.is_a? Hash
-        _make_map(item)
-      else
-        item.to_s
-      end
+        if item.is_a? String
+            if item.scan(/[[:punct:]]/i).length > 0
+                item = "\'" + item + "\'"
+            end
+        end
+        if item.is_a? Array
+            _make_list(item)
+        elsif item.is_a? Hash
+            _make_map(item)
+        else
+            item.to_s
+        end
     end
 
     def _make_list(item)
